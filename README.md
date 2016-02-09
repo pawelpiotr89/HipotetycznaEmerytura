@@ -1,2 +1,2 @@
 # HipotetycznaEmerytura
-HipotetycznaEmerytura
+HipotetycznaEmerytura (ready to use)
