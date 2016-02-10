@@ -188,7 +188,7 @@ public class RamkaProgramu{
     opisPodsumowania2.setAlignmentX(0.0F);
     opisPodsumowania3.setText("Opiera się na zasadch powrotu do wcześniejszego progu przejścia na emeryturę (Kobiety - 60 lat, Mężczyźni - 65 lat), nadchodzącej nowelizacji ustawy.");
     opisPodsumowania3.setAlignmentX(0.0F);
-    opisPodsumowania4.setText("Wyniki symulacji należy przyjąć z dużą dozą ostrożności, gdy¿ jak ka¿da symulacja na wiele lat naprzód jest obarczona znacznym marginesem błędu.");
+    opisPodsumowania4.setText("Wyniki symulacji należy przyjąć z dużą dozą ostrożności, gdyż jak każda symulacja na wiele lat naprzód jest obarczona znacznym marginesem błędu.");
     opisPodsumowania4.setAlignmentX(0.0F);
     opisPodsumowania5.setText("Niemniej jednak wiedza o przybliźonej prognozowanej wilekości emerytury pozwoli lepiej przygotować się na przyszłość.");
     opisPodsumowania5.setAlignmentX(0.0F);
@@ -459,7 +459,7 @@ public class RamkaProgramu{
   public void wyliczenieEmeryturyBezOFE()
   
   {
-    roczneWynagrodzenieS = (inputData.getLataPracy() * 12 * inputData.getStaraPensja());
+    roczneWynagrodzenieS = (inputData.getLataPracy() * miesiace * inputData.getStaraPensja());
     
     if (roczneWynagrodzenieS > 85300.0D)
     {
@@ -472,18 +472,18 @@ public class RamkaProgramu{
       staraSkladkaSubkonto = (roczneWynagrodzenieS * 0.073D);
     }
     
-    for (x = 0; x < inputData.getLataPracy(); x += 1)
+    for (x = 0; x < inputData.getLataPracy(); x ++)
     {
       staraSkladkaZUS += staraSkladkaZUS * 0.045D;
       staraSkladkaSubkonto += staraSkladkaSubkonto * 0.055D;
     }
     staz = (inputData.getWiekEmerytalny() - inputData.getAktualnyWiek());
     
-    roczneWynagrodzenieN = (inputData.getAktualnaPensja() * 12);
+    roczneWynagrodzenieN = (inputData.getAktualnaPensja() * miesiace);
     zrewaloryzowanaNowaSkladkaZUS = staraSkladkaZUS;
     zrewaloryzowanaNowaSkladkaSubkonto = staraSkladkaSubkonto;
     
-    for (x = 0; x < staz; x += 1)
+    for (x = 0; x < staz; x ++)
     {
       nowaSkladkaZUS = (roczneWynagrodzenieN * 0.1222D);
       zrewaloryzowanaNowaSkladkaZUS = (zrewaloryzowanaNowaSkladkaZUS + nowaSkladkaZUS + zrewaloryzowanaNowaSkladkaZUS * 0.035D);
@@ -495,7 +495,7 @@ public class RamkaProgramu{
     }
     kapital = (zrewaloryzowanaNowaSkladkaZUS + zrewaloryzowanaNowaSkladkaSubkonto);
     
-    miesiaceEmerytury = ((staz + staz * 0.2D) * 12.0D);
+    miesiaceEmerytury = ((staz + staz * 0.2D) * miesiace);
     
     prognozowanaEmerytura = Math.round(kapital / miesiaceEmerytury);
     
@@ -505,7 +505,7 @@ public class RamkaProgramu{
   
   public void wyliczenieEmeryturyZOFE()
   {
-    roczneWynagrodzenieS = (inputData.getLataPracy() * 12 * inputData.getStaraPensja());
+    roczneWynagrodzenieS = (inputData.getLataPracy() * miesiace * inputData.getStaraPensja());
     
     if (roczneWynagrodzenieS > 85300.0D)
     {
@@ -520,7 +520,7 @@ public class RamkaProgramu{
       staraSkladkaOFE = (roczneWynagrodzenieS * 0.0292D);
     }
     
-    for (x = 0; x < inputData.getLataPracy(); x += 1)
+    for (x = 0; x < inputData.getLataPracy(); x ++)
     {
       staraSkladkaZUS += staraSkladkaZUS * 0.045D;
       staraSkladkaSubkonto += staraSkladkaSubkonto * 0.055D;
@@ -529,12 +529,12 @@ public class RamkaProgramu{
     
     staz = (inputData.getWiekEmerytalny() - inputData.getAktualnyWiek());
     
-    roczneWynagrodzenieN = (inputData.getAktualnaPensja() * 12);
+    roczneWynagrodzenieN = (inputData.getAktualnaPensja() * miesiace);
     zrewaloryzowanaNowaSkladkaZUS = staraSkladkaZUS;
     zrewaloryzowanaNowaSkladkaSubkonto = staraSkladkaSubkonto;
     zrewaloryzowanaNowaSkladkaOFE = staraSkladkaOFE;
     
-    for (x = 0; x < staz; x += 1)
+    for (x = 0; x < staz; x ++)
     {
       nowaSkladkaZUS = (roczneWynagrodzenieN * 0.1222D);
       zrewaloryzowanaNowaSkladkaZUS = (zrewaloryzowanaNowaSkladkaZUS + nowaSkladkaZUS + zrewaloryzowanaNowaSkladkaZUS * 0.035D);
@@ -550,7 +550,7 @@ public class RamkaProgramu{
     
     kapital = (zrewaloryzowanaNowaSkladkaZUS + zrewaloryzowanaNowaSkladkaSubkonto + zrewaloryzowanaNowaSkladkaOFE);
     
-    miesiaceEmerytury = ((staz + staz * 0.2D) * 12.0D);
+    miesiaceEmerytury = ((staz + staz * 0.2D) * miesiace);
     
     prognozowanaEmerytura = Math.round(kapital / miesiaceEmerytury);
     
